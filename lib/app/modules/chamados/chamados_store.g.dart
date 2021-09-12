@@ -9,25 +9,25 @@ part of 'chamados_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ChamadosStore on _ChamadosStoreBase, Store {
-  final _$enterpriseListAtom = Atom(name: '_ChamadosStoreBase.enterpriseList');
+  final _$callsAtom = Atom(name: '_ChamadosStoreBase.calls');
 
   @override
-  ObservableList<EntepriseChat> get enterpriseList {
-    _$enterpriseListAtom.reportRead();
-    return super.enterpriseList;
+  ObservableList<CallModel> get calls {
+    _$callsAtom.reportRead();
+    return super.calls;
   }
 
   @override
-  set enterpriseList(ObservableList<EntepriseChat> value) {
-    _$enterpriseListAtom.reportWrite(value, super.enterpriseList, () {
-      super.enterpriseList = value;
+  set calls(ObservableList<CallModel> value) {
+    _$callsAtom.reportWrite(value, super.calls, () {
+      super.calls = value;
     });
   }
 
   @override
   String toString() {
     return '''
-enterpriseList: ${enterpriseList}
+calls: ${calls}
     ''';
   }
 }
