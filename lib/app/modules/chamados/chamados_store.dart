@@ -13,6 +13,7 @@ abstract class _ChamadosStoreBase with Store {
   @observable
   ObservableList<CallModel> calls = ObservableList<CallModel>();
 
+  @action
   getList(){
     calls = chamados.calls().asObservable();
   }

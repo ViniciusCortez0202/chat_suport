@@ -24,6 +24,20 @@ mixin _$ChamadosStore on _ChamadosStoreBase, Store {
     });
   }
 
+  final _$_ChamadosStoreBaseActionController =
+      ActionController(name: '_ChamadosStoreBase');
+
+  @override
+  dynamic getList() {
+    final _$actionInfo = _$_ChamadosStoreBaseActionController.startAction(
+        name: '_ChamadosStoreBase.getList');
+    try {
+      return super.getList();
+    } finally {
+      _$_ChamadosStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
