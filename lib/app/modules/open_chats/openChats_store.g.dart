@@ -9,18 +9,18 @@ part of 'openChats_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$OpenChatsStore on _OpenChatsStoreBase, Store {
-  final _$enterpriseListAtom = Atom(name: '_OpenChatsStoreBase.enterpriseList');
+  final _$chatListAtom = Atom(name: '_OpenChatsStoreBase.chatList');
 
   @override
-  ObservableList<EntepriseChat> get enterpriseList {
-    _$enterpriseListAtom.reportRead();
-    return super.enterpriseList;
+  ObservableList<OpenChatModel> get chatList {
+    _$chatListAtom.reportRead();
+    return super.chatList;
   }
 
   @override
-  set enterpriseList(ObservableList<EntepriseChat> value) {
-    _$enterpriseListAtom.reportWrite(value, super.enterpriseList, () {
-      super.enterpriseList = value;
+  set chatList(ObservableList<OpenChatModel> value) {
+    _$chatListAtom.reportWrite(value, super.chatList, () {
+      super.chatList = value;
     });
   }
 
@@ -28,11 +28,11 @@ mixin _$OpenChatsStore on _OpenChatsStoreBase, Store {
       ActionController(name: '_OpenChatsStoreBase');
 
   @override
-  dynamic readerList(EntepriseChat enterprise) {
+  dynamic getList() {
     final _$actionInfo = _$_OpenChatsStoreBaseActionController.startAction(
-        name: '_OpenChatsStoreBase.readerList');
+        name: '_OpenChatsStoreBase.getList');
     try {
-      return super.readerList(enterprise);
+      return super.getList();
     } finally {
       _$_OpenChatsStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +41,7 @@ mixin _$OpenChatsStore on _OpenChatsStoreBase, Store {
   @override
   String toString() {
     return '''
-enterpriseList: ${enterpriseList}
+chatList: ${chatList}
     ''';
   }
 }

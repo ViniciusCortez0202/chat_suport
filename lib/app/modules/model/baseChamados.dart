@@ -54,8 +54,14 @@ class BaseChamados {
 
   List<CallModel> calls(){
     var id = EntrerpresiData.id;
-    enterpriseList.sort((a, b) => a.status == Status.Activate ? 1 : a.status == Status.Open ? -1 : 1);
+    enterpriseList.sort((a, b) => a.status == Status.Open ? -1 : a.status == Status.Activate ? -1 : 1);
     return enterpriseList;
+  }
+
+  List<CallModel> chats(){
+    var id = EntrerpresiData.id;
+    enterpriseList.sort((a, b) => a.date.compareTo(b.date));
+    return enterpriseList.where((element) => element.status == Status.Activate ? true : false).toList();
   }
 
 }

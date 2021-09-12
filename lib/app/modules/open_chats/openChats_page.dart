@@ -14,11 +14,13 @@ class OpenChatsPageState extends State<OpenChatsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Modular.get<OpenChatsStore>();
+    controller.getList();
     return Scaffold(
      appBar: AppBar(
        title: Modular.get<AppBarPage>(),
      ),
-     body: ChatsWidget(Modular.get<OpenChatsStore>()),
+     body: ChatsWidget(controller),
     );
   }
 }

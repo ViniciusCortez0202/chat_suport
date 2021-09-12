@@ -7,6 +7,7 @@ import 'package:projeto_chat_suporte/app/modules/chat/chat_module.dart';
 import 'modules/appBar/appBar_store.dart';
 import 'modules/chamados/chamados_module.dart';
 import 'modules/home/home_module.dart';
+import 'modules/model/baseChamados.dart';
 import 'modules/open_chats/openChats_module.dart';
 import 'modules/servicos/servicos_module.dart';
 
@@ -15,6 +16,7 @@ class AppModule extends Module {
   final List<Bind> binds = [
    Bind.singleton((i) => AppBarPage()),
    Bind.singleton((i) => AppBarStore()),
+   Bind.singleton((i) => BaseChamados())
   ];
 
   @override

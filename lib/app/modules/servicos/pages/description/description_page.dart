@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_chat_suporte/app/modules/model/service_contrato.dart';
 import 'package:projeto_chat_suporte/app/modules/servicos/pages/description/description_controller.dart';
 

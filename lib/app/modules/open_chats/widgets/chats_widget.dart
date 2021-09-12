@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:projeto_chat_suporte/app/modules/model/call_enteprise_chat.dart';
+import 'package:projeto_chat_suporte/app/modules/open_chats/models/open_chat_model.dart';
 
 import '../openChats_store.dart';
 
@@ -14,7 +14,7 @@ class ChatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<EntepriseChat> list = controller.enterpriseList;
+    List<OpenChatModel> list = controller.chatList;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -23,15 +23,15 @@ class ChatsWidget extends StatelessWidget {
         itemBuilder: (_, index) {
           return GestureDetector(
             onTap: (){
-              controller.readerList(list[index]);
+
             },
             child: Observer(              
               builder: (_) {
-                return Container(
+                return list.isEmpty ? Center(child: CircularProgressIndicator(),) : Container(
                     margin: EdgeInsets.only(top: 15, bottom: 5),
-                    height: 100,
+                    height: 100,                    
                     decoration: BoxDecoration(
-                      color: list[index].messageReader == true ? Colors.white : Color(0XFFFCD3D1),
+                      color: list[index].isReader ? Colors.white : Color(0XFFFCD3D1),
                       borderRadius: BorderRadius.all(Radius.circular(30.0)),
                     ),
                     child: Row(
@@ -44,7 +44,7 @@ class ChatsWidget extends StatelessWidget {
                             ),
                             CircleAvatar(
                               backgroundImage: NetworkImage(
-                                  list[index].img),
+                                  list[index].callModel.img),
                               radius: 30,
                             ),
                             SizedBox(
@@ -59,7 +59,7 @@ class ChatsWidget extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      list[index].enterprise,
+                                      list[index].lasMessage,
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
@@ -67,12 +67,12 @@ class ChatsWidget extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      list[index].motivo,
+                                      list[index].callModel.motivo,
                                       style: TextStyle(color: Colors.blueGrey[500]),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      list[index].service,
+                                      list[index].callModel.service,
                                       overflow: TextOverflow.ellipsis,
                                     )
                                   ],
