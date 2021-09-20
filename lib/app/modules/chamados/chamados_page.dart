@@ -51,14 +51,14 @@ class ChamadosPageState extends State<ChamadosPage> {
                   ? CircularProgressIndicator()
                   : Expanded(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: ListView.builder(
                           itemCount: list.length,
                           itemBuilder: (_, index) {
                             return GestureDetector(
                               onTap: () {},
                               child: Observer(builder: (_) {
-                                return Container(
+                                return Container(                                    
                                     margin: EdgeInsets.only(top: 15, bottom: 5),
                                     height: 100,
                                     decoration: BoxDecoration(
