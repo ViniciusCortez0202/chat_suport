@@ -32,7 +32,7 @@ class ChamadosPageState extends State<ChamadosPage> {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ElevatedButton(
               onPressed: () {
-                Modular.to.pushNamed("/chat/1");
+               
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -56,7 +56,9 @@ class ChamadosPageState extends State<ChamadosPage> {
                           itemCount: list.length,
                           itemBuilder: (_, index) {
                             return GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                 Modular.to.pushNamed("/chat", arguments: list[index]);
+                              },
                               child: Observer(builder: (_) {
                                 return Container(                                    
                                     margin: EdgeInsets.only(top: 15, bottom: 5),
