@@ -1,4 +1,6 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projeto_chat_suporte/app/modules/chat/chat_controller.dart';
 import 'package:projeto_chat_suporte/app/modules/chat/chat_store.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_chat_suporte/app/modules/model/service_call.dart';
@@ -11,8 +13,9 @@ class ChatPage extends StatefulWidget {
   @override
   ChatPageState createState() => ChatPageState();
 }
+
 class ChatPageState extends State<ChatPage> {
-  final ChatStore store = Modular.get();
+  final ChatController controller = Modular.get<ChatController>();
 
   _buildMessage(Message message, bool isMe) {
     final Container msg = Container(
@@ -63,27 +66,11 @@ class ChatPageState extends State<ChatPage> {
         ],
       ),
     );
-    if (isMe) {
-      return msg;
-    }
-    return Row(
-      children: <Widget>[
-        msg,
-        IconButton(
-          icon: message.isLiked
-              ? Icon(Icons.favorite)
-              : Icon(Icons.favorite_border),
-          iconSize: 30.0,
-          color: message.isLiked
-              ? Theme.of(context).primaryColor
-              : Colors.blueGrey,
-          onPressed: () {},
-        )
-      ],
-    );
+    return msg;
   }
 
   _buildMessageComposer() {
+    String messageSend = "";
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       height: 70.0,
@@ -99,7 +86,7 @@ class ChatPageState extends State<ChatPage> {
           Expanded(
             child: TextField(
               textCapitalization: TextCapitalization.sentences,
-              onChanged: (value) {},
+              controller: controller.sendText,
               decoration: InputDecoration.collapsed(
                 hintText: 'Send a message...',
               ),
@@ -109,7 +96,9 @@ class ChatPageState extends State<ChatPage> {
             icon: Icon(Icons.send),
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
-            onPressed: () {},
+            onPressed: () {
+              controller.send();
+            },
           ),
         ],
       ),
@@ -156,14 +145,20 @@ class ChatPageState extends State<ChatPage> {
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0),
                   ),
-                  child: ListView.builder(
-                    reverse: true,
-                    padding: EdgeInsets.only(top: 15.0),
-                    itemCount: messages.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final Message message = messages[index];
-                      final bool isMe = message.sender.id == currentUser.id;
-                      return _buildMessage(message, isMe);
+                  child: Observer(
+                    builder: (_) {
+                      return ListView.builder(
+                        reverse: true,
+                        padding: EdgeInsets.only(top: 15.0),
+                        itemCount: controller.store.messages.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final Message message =
+                              controller.store.messages[index];
+                          final bool isMe =
+                              controller.store.messages[index].isMe;
+                          return _buildMessage(message, isMe);
+                        },
+                      );
                     },
                   ),
                 ),
