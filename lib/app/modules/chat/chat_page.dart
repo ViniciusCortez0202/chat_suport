@@ -16,6 +16,7 @@ class ChatPage extends StatefulWidget {
 
 class ChatPageState extends State<ChatPage> {
   final ChatController controller = Modular.get<ChatController>();
+  
 
   _buildMessage(Message message, bool isMe) {
     final Container msg = Container(
@@ -107,6 +108,7 @@ class ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    if(controller.idSocket.isEmpty)controller.openSocket(widget.chamado.idCall);
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(

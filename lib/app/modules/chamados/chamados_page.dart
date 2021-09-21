@@ -38,9 +38,8 @@ class ChamadosPageState extends State<ChamadosPage> {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ElevatedButton(
               onPressed: () {
-                Modular.to.pushNamed('/chamados/newCall').whenComplete(() => {
-                  controller.getList()                  
-                });
+                Modular.to.pushNamed('/chamados/newCall').whenComplete(
+                  controller.getList);
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -66,7 +65,7 @@ class ChamadosPageState extends State<ChamadosPage> {
                             return GestureDetector(
                               onTap: () {
                                 Modular.to.pushNamed("/chat",
-                                    arguments: controller.calls[index]);
+                                    arguments: controller.calls[index]).whenComplete(controller.getList);
                               },
                               child: Observer(builder: (_) {
                                 return Container(

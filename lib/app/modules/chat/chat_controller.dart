@@ -10,9 +10,12 @@ class ChatController {
   final SocketReposoritory socket;
   final ChatStore store = Modular.get<ChatStore>();
   final TextEditingController sendText = TextEditingController();
+  String idSocket = "";
 
-  ChatController({required this.socket}){
-    socket.createSocket();
+  ChatController({required this.socket});
+
+  openSocket(String idCall){
+    idSocket = socket.createSocket(idCall);
   }
 
   send(){    
