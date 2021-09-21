@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_chat_suporte/app/modules/chamados/repositories/novos_chamados_repository.dart';
 import 'package:projeto_chat_suporte/app/modules/model/service_call.dart';
 

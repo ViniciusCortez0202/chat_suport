@@ -8,11 +8,11 @@ import 'package:projeto_chat_suporte/app/modules/chat/repositories/socket_reposo
 class ChatController {
 
   final SocketReposoritory socket;
-  final ChatStore store = Modular.get<ChatStore>();
+  final ChatStore store;
   final TextEditingController sendText = TextEditingController();
   String idSocket = "";
 
-  ChatController({required this.socket});
+  ChatController({required this.socket, required this.store});
 
   openSocket(String idCall){
     idSocket = socket.createSocket(idCall);

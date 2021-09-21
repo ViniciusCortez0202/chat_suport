@@ -8,7 +8,9 @@ void main() {
     store = AppBarStore();
   });
 
-  test('increment count', () async {
+  test('deve retornar página e index selecionado', () {
+    store.changePage(store.pages[1], 1);
 
+    expect(store.selectedIndex, 1);
   });
 }

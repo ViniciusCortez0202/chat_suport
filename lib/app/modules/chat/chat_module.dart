@@ -8,9 +8,9 @@ import 'chat_page.dart';
 class ChatModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => SocketReposoritory()),
-    Bind.lazySingleton((i) => ChatController(socket: i.get<SocketReposoritory>())),
     Bind.lazySingleton((i) => ChatStore()),
+    Bind.lazySingleton((i) => SocketReposoritory()),
+    Bind.lazySingleton((i) => ChatController(socket: i.get<SocketReposoritory>(), store: i.get<ChatStore>())),
   ];
 
   @override

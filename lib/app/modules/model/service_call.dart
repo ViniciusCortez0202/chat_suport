@@ -23,10 +23,12 @@ class CallModel {
   Map toJson() {
     return {
       'entepriseId': EntrerpresiData.id,
+      'idCall': idCall,
       'motivo': motivo,
       'servico': service,
       'descricao': descricao,
-      'status': Status.Open.value
+      'status': Status.Open.value,
+      'data': date
     };
   }
 

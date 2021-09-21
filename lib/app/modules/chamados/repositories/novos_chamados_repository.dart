@@ -8,17 +8,21 @@ class NovosChamadosRepository {
   NovosChamadosRepository(this._dio);
 
     sendCall(CallModel call) async{
-    await _dio.post("${SocketConection.local}/chamados", data: call.toJson());
+    await _dio.post("/chamados", data: call.toJson());
   }
 
 
     Future<List<CallModel>> getCalls() async{
-    var response = await _dio.get("${SocketConection.local}/getChamados");
-    final list = response.data as List;       
-    return list.map((item) => CallModel.fromJson(item)).toList();;
+       List<CallModel> listCalls;
+      try {
+         var response = await _dio.get("/getChamados");
+         var list = response.data as List; 
+         listCalls = list.map((item) => CallModel.fromJson(item)).toList(); 
+         listCalls.sort((a, b) => a.status == Status.Open ? -1 : a.status == Status.Activate ? -1 : 1);             
+      } catch (e) {
+        throw ("Não foi possível encontrar os chamados");
+      }
+      return listCalls;
   }
 
 }
-
-
-//CallModel(idCall: item['id'], date: item['data'], motivo: item['motivo'], descricao: item['descricao'], service: item['service'], status: item['status'])
