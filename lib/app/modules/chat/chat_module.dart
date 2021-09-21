@@ -8,8 +8,8 @@ import 'chat_page.dart';
 class ChatModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.factory((i) => SocketReposoritory()),
-    Bind.factory((i) => ChatController(socket: i.get<SocketReposoritory>())),
+    Bind.lazySingleton((i) => SocketReposoritory()),
+    Bind.lazySingleton((i) => ChatController(socket: i.get<SocketReposoritory>())),
     Bind.lazySingleton((i) => ChatStore()),
   ];
 
