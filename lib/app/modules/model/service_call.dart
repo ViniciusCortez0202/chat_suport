@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_chat_suporte/app/util/enterprise/entrerprise_data.dart';
 
-class CallModel{
+class CallModel {
   String idCall;
   String img;
   String motivo;
@@ -10,15 +10,23 @@ class CallModel{
   String date;
   String descricao;
 
-  CallModel({required this.idCall, required this.img, required this.motivo, required this.service, required this.status, required this.date, required this.descricao});
+  CallModel(
+      {required this.idCall,
+      this.img =
+          "https://pbs.twimg.com/profile_images/882809436930285570/fhwvnEwg.jpg",
+      required this.motivo,
+      required this.service,
+      required this.status,
+      required this.date,
+      required this.descricao});
 
-  Map toJson(){
-    return {       
-       'entepriseId': EntrerpresiData.id,
-       'motivo': motivo,
-       'servico': service,
-       'descricao': descricao,
-       'status': Status.Open.value    
+  Map toJson() {
+    return {
+      'entepriseId': EntrerpresiData.id,
+      'motivo': motivo,
+      'servico': service,
+      'descricao': descricao,
+      'status': Status.Open.value
     };
   }
 }
@@ -37,7 +45,7 @@ extension StatusValues on Status {
     }
   }
 
-    Color get types {
+  Color get types {
     switch (this) {
       case Status.Open:
         return Colors.orange;
