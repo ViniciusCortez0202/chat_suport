@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_chat_suporte/app/modules/appBar/appBar_module.dart';
 import 'package:projeto_chat_suporte/app/modules/appBar/appBar_page.dart';
@@ -16,7 +17,8 @@ class AppModule extends Module {
   final List<Bind> binds = [
    Bind.singleton((i) => AppBarPage()),
    Bind.singleton((i) => AppBarStore()),
-   Bind.singleton((i) => BaseChamados())
+   Bind.singleton((i) => BaseChamados()),
+   Bind.singleton((i) => Dio())
   ];
 
   @override

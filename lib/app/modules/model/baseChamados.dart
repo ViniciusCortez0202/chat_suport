@@ -12,6 +12,7 @@ class BaseChamados {
         motivo: "SEM CONEXAO COM INTERNET",
         service: "INFRAESTRUTURA",
         status: Status.Open,
+        descricao: "",
         ),
     CallModel(
         idCall: "2",
@@ -20,7 +21,8 @@ class BaseChamados {
             "https://pbs.twimg.com/profile_images/882809436930285570/fhwvnEwg.jpg",
         motivo: "falta de cfop em nota fiscal",
         service: "ARPA",
-        status: Status.Close
+        status: Status.Close,
+        descricao: "",
         ),
     CallModel(
         idCall: "3",
@@ -30,6 +32,7 @@ class BaseChamados {
         motivo: "bkp inconsistente",
         service: "BACKUP",
         status: Status.Open,
+        descricao: "",
         ),
     CallModel(
         idCall: "4",
@@ -38,7 +41,8 @@ class BaseChamados {
             "https://pbs.twimg.com/profile_images/882809436930285570/fhwvnEwg.jpg",
         motivo: "Pdv NÃO ABRE",
         service: "ARPA",
-        status: Status.Activate
+        status: Status.Activate,
+        descricao: "",
         ),
     CallModel(
         idCall: "5",
@@ -47,7 +51,8 @@ class BaseChamados {
             "https://pbs.twimg.com/profile_images/882809436930285570/fhwvnEwg.jpg",
         motivo: "NÃO CONSIGO ENVIAR BACKUP",
         service: "BACKUP",
-        status: Status.Activate
+        status: Status.Activate,
+        descricao: "",
         ),
   ];
 

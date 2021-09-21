@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_chat_suporte/app/modules/chamados/pages/novo_chamado/novo_chamado_controller.dart';
+import 'package:projeto_chat_suporte/app/modules/chamados/repositories/novos_chamados_repository.dart';
 
 class NovoChamadoPage extends StatefulWidget {
 
@@ -9,9 +11,9 @@ class NovoChamadoPage extends StatefulWidget {
 }
 
 class NovoChamadoPageState extends State<NovoChamadoPage> {
-  NovoChamadoController controller = NovoChamadoController();
+  NovoChamadoController controller = NovoChamadoController(repository: Modular.get<NovosChamadosRepository>());
   String dropdownValue = 'Arpa';
-  String servico = "";
+  String servico = "Arpa";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
