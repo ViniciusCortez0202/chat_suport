@@ -30,7 +30,7 @@ class CallModel {
     };
   }
 
-  static Status _getStatus(String sts){
+  static Status getStatusFromString(String sts){
     Status stss = Status.Open;
     for (Status item in Status.values) {
       if(item.value == sts){
@@ -49,7 +49,7 @@ class CallModel {
       motivo: json['motivo'],
       descricao: json['descricao'],
       service: json['service'],
-      status: _getStatus(json['status']),
+      status: getStatusFromString(json['status']),
     );
   }
 }
