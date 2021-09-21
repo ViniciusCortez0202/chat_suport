@@ -32,7 +32,7 @@ class ChamadosPageState extends State<ChamadosPage> {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ElevatedButton(
               onPressed: () {
-               
+                Modular.to.pushNamed('/chamados/newCall');
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
