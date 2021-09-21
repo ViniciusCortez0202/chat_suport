@@ -29,6 +29,29 @@ class CallModel {
       'status': Status.Open.value
     };
   }
+
+  static Status _getStatus(String sts){
+    Status stss = Status.Open;
+    for (Status item in Status.values) {
+      if(item.value == sts){
+        stss = item;
+        break;
+      }
+    }
+    return stss;
+  }
+
+  factory CallModel.fromJson(json) {
+
+    return CallModel(
+      idCall: json['id'].toString(),
+      date: json['data'],
+      motivo: json['motivo'],
+      descricao: json['descricao'],
+      service: json['service'],
+      status: _getStatus(json['status']),
+    );
+  }
 }
 
 enum Status { Open, Close, Activate }

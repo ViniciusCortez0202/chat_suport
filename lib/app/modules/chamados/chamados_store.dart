@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:projeto_chat_suporte/app/modules/chamados/repositories/novos_chamados_repository.dart';
 import 'package:projeto_chat_suporte/app/modules/model/baseChamados.dart';
 import 'package:projeto_chat_suporte/app/modules/model/service_call.dart';
 
@@ -9,13 +10,19 @@ class ChamadosStore = _ChamadosStoreBase with _$ChamadosStore;
 abstract class _ChamadosStoreBase with Store {
 
   BaseChamados chamados = Modular.get<BaseChamados>();
+  
+  @observable
+  List<CallModel> calls = [];
 
   @observable
-  ObservableList<CallModel> calls = ObservableList<CallModel>();
+  ObservableFuture<List<CallModel>> asyncCall = ObservableFuture.value([]);
 
   @action
-  getList(){
-    calls = chamados.calls().asObservable();
+  Future<void> getList() async {
+    var repository = Modular.get<NovosChamadosRepository>();
+    asyncCall = ObservableFuture(repository.getCalls());
+    calls = await asyncCall;
+    //calls = chamados.calls().asObservable();
   }
 
 

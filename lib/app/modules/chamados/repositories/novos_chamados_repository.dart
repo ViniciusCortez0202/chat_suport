@@ -11,4 +11,14 @@ class NovosChamadosRepository {
     await _dio.post("${SocketConection.local}/chamados", data: call.toJson());
   }
 
+
+    Future<List<CallModel>> getCalls() async{
+    var response = await _dio.get("${SocketConection.local}/getChamados");
+    final list = response.data as List;       
+    return list.map((item) => CallModel.fromJson(item)).toList();;
+  }
+
 }
+
+
+//CallModel(idCall: item['id'], date: item['data'], motivo: item['motivo'], descricao: item['descricao'], service: item['service'], status: item['status'])

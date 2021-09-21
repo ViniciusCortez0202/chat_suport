@@ -12,30 +12,23 @@ mixin _$ChamadosStore on _ChamadosStoreBase, Store {
   final _$callsAtom = Atom(name: '_ChamadosStoreBase.calls');
 
   @override
-  ObservableList<CallModel> get calls {
+  List<CallModel> get calls {
     _$callsAtom.reportRead();
     return super.calls;
   }
 
   @override
-  set calls(ObservableList<CallModel> value) {
+  set calls(List<CallModel> value) {
     _$callsAtom.reportWrite(value, super.calls, () {
       super.calls = value;
     });
   }
 
-  final _$_ChamadosStoreBaseActionController =
-      ActionController(name: '_ChamadosStoreBase');
+  final _$getListAsyncAction = AsyncAction('_ChamadosStoreBase.getList');
 
   @override
-  dynamic getList() {
-    final _$actionInfo = _$_ChamadosStoreBaseActionController.startAction(
-        name: '_ChamadosStoreBase.getList');
-    try {
-      return super.getList();
-    } finally {
-      _$_ChamadosStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future getList() {
+    return _$getListAsyncAction.run(() => super.getList());
   }
 
   @override
