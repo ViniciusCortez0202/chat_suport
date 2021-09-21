@@ -22,6 +22,7 @@ abstract class _ChamadosStoreBase with Store {
     var repository = Modular.get<NovosChamadosRepository>();
     asyncCall = ObservableFuture(repository.getCalls());
     calls = await asyncCall;
+    calls.sort((a, b) => a.status == Status.Open ? -1 : a.status == Status.Activate ? -1 : 1);
     //calls = chamados.calls().asObservable();
   }
 
