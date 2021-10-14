@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projeto_chat_suporte/app/services/sockets/socket_connection.dart';
 
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Modular.get<SocketConnection>().createSocket();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chat de Chamados',      

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:projeto_chat_suporte/app/modules/chamados/repositories/novos_chamados_repository.dart';
 import 'package:projeto_chat_suporte/app/modules/model/service_call.dart';
-import 'package:projeto_chat_suporte/app/util/chat/socket_conection.dart';
+import 'package:projeto_chat_suporte/app/util/chat/socket_conection_info.dart';
 
 void main() {
   late Dio dio;
@@ -29,7 +29,7 @@ void main() {
   ];
 
   setUp(() {
-    dio = Dio(BaseOptions(baseUrl: SocketConection.local));
+    dio = Dio(BaseOptions(baseUrl: SocketConectionInfo.local));
     dioAdapter = DioAdapter(dio: dio);
     call = CallModel(
       idCall: '001',

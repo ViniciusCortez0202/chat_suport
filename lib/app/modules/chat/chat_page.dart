@@ -1,7 +1,6 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_chat_suporte/app/modules/chat/chat_controller.dart';
-import 'package:projeto_chat_suporte/app/modules/chat/chat_store.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_chat_suporte/app/modules/model/service_call.dart';
 
@@ -71,7 +70,7 @@ class ChatPageState extends State<ChatPage> {
   }
 
   _buildMessageComposer() {
-    String messageSend = "";
+  
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       height: 70.0,
@@ -108,7 +107,6 @@ class ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    if(controller.idSocket.isEmpty)controller.openSocket(widget.chamado.idCall);
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(

@@ -3,7 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_chat_suporte/app/modules/appBar/appBar_module.dart';
 import 'package:projeto_chat_suporte/app/modules/appBar/appBar_page.dart';
 import 'package:projeto_chat_suporte/app/modules/chat/chat_module.dart';
-import 'package:projeto_chat_suporte/app/util/chat/socket_conection.dart';
+import 'package:projeto_chat_suporte/app/services/sockets/socket_connection.dart';
+import 'package:projeto_chat_suporte/app/util/chat/socket_conection_info.dart';
 
 
 import 'modules/appBar/appBar_store.dart';
@@ -19,7 +20,8 @@ class AppModule extends Module {
    Bind.singleton((i) => AppBarPage()),
    Bind.singleton((i) => AppBarStore()),
    Bind.singleton((i) => BaseChamados()),
-   Bind.singleton((i) => Dio(BaseOptions(baseUrl: SocketConection.local)))
+   Bind.singleton((i) => SocketConnection()),
+   Bind.singleton((i) => Dio(BaseOptions(baseUrl: SocketConectionInfo.local)))
   ];
 
   @override
