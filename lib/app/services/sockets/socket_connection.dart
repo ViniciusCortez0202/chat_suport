@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projeto_chat_suporte/app/modules/chat/chat_controller.dart';
 import 'package:projeto_chat_suporte/app/modules/chat/chat_store.dart';
 import 'package:projeto_chat_suporte/app/modules/chat/model/messageModel.dart';
 import 'package:projeto_chat_suporte/app/util/chat/socket_conection_info.dart';
@@ -21,7 +22,7 @@ class SocketConnection {
     _socket.on(
         "message",
         (data) =>
-            {Modular.get<ChatStore>().recieveMessage(Message.fromJson(data))});
+            {Modular.get<ChatController>().store.recieveMessage(Message.fromJson(data))});
     return _socket.id.toString();
   }
 

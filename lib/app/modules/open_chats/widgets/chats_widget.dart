@@ -44,7 +44,7 @@ class ChatsWidget extends StatelessWidget {
                             ),
                             CircleAvatar(
                               backgroundImage: NetworkImage(
-                                  list[index].callModel.img),
+                                  list[index].callModel.suport.profilePicture),
                               radius: 30,
                             ),
                             SizedBox(
@@ -67,12 +67,12 @@ class ChatsWidget extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      list[index].callModel.motivo,
+                                      list[index].callModel.title,
                                       style: TextStyle(color: Colors.blueGrey[500]),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      list[index].callModel.service,
+                                      list[index].callModel.job,
                                       overflow: TextOverflow.ellipsis,
                                     )
                                   ],

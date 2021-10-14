@@ -14,7 +14,7 @@ class ChatController {
 
   send(){    
     var message = Message(isMe: true, text: sendText.text, unread: false, time: TimeOfDay.now().toString().substring(10, 15));
-    store.recieveMessage(message);
+    //store.recieveMessage(message);
     socket.senderMessage(message);  
     print("Message " + message.text);
     sendText.clear();

@@ -1,83 +1,66 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+
+import 'package:projeto_chat_suporte/app/modules/model/users/client_user.dart';
+import 'package:projeto_chat_suporte/app/modules/model/users/suport_user.dart';
 import 'package:projeto_chat_suporte/app/util/enterprise/entrerprise_data.dart';
+
+import 'enums/status_enum.dart';
 
 class CallModel {
   String idCall;
-  String img;
-  String motivo;
-  String service;
+  late ClientModel client;
+  late SuportModel suport;
+  List<String> imgs;
+  String title;
+  String job;
   Status status;
-  String date;
-  String descricao;
+  String dateOpen;
+  late String dateClose;
+  String description;
+  String token;
 
-  CallModel(
-      {required this.idCall,
-      this.img =
-          "https://pbs.twimg.com/profile_images/882809436930285570/fhwvnEwg.jpg",
-      required this.motivo,
-      required this.service,
-      required this.status,
-      required this.date,
-      required this.descricao});
+  CallModel({
+    required this.token,
+    required this.idCall,
+    required this.title,
+    required this.imgs,
+    required this.job,
+    required this.status,
+    required this.dateOpen,
+    required this.description,
+  });
 
   Map toJson() {
     return {
-      'entepriseId': EntrerpresiData.id,
+      'codeEnterprise': EntrerpresiData.id,
       'idCall': idCall,
-      'motivo': motivo,
-      'servico': service,
-      'descricao': descricao,
+      'client': client.toJson(),
+      'suport': suport.toJson(),
+      'title': title,
+      'job': job,
+      'description': description,
       'status': Status.Open.value,
-      'data': date
+      'date_open': dateOpen,
+      'date_close': dateClose,
+      'token': token
     };
   }
 
-  static Status getStatusFromString(String sts){
-    Status stss = Status.Open;
-    for (Status item in Status.values) {
-      if(item.value == sts){
-        stss = item;
-        break;
-      }
-    }
-    return stss;
-  }
-
   factory CallModel.fromJson(json) {
-
-    return CallModel(
-      idCall: json['id'].toString(),
-      date: json['data'],
-      motivo: json['motivo'],
-      descricao: json['descricao'],
-      service: json['service'],
+     var call =  CallModel(
+      token: json['token'],
+      idCall: json['idCall'],
+      title: json['title'],
+      job: json['job'],      
+      description: json['description'],
+      // imgs: json['imgs'] as List<String>,
+       imgs: [],
       status: getStatusFromString(json['status']),
-    );
-  }
-}
-
-enum Status { Open, Close, Activate }
-
-extension StatusValues on Status {
-  String get value {
-    switch (this) {
-      case Status.Open:
-        return 'Aberto';
-      case Status.Close:
-        return 'Fechado';
-      case Status.Activate:
-        return 'Ativo';
-    }
-  }
-
-  Color get types {
-    switch (this) {
-      case Status.Open:
-        return Colors.orange;
-      case Status.Close:
-        return Colors.red;
-      case Status.Activate:
-        return Colors.green;
-    }
+      dateOpen: json['date_open'],
+    );    
+    call.client = ClientModel.fromJson(json['client']);
+    call.suport = SuportModel.fromJson(json['suport']);
+    call.dateClose = json['date_close'];
+    return call;
   }
 }

@@ -4,7 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:projeto_chat_suporte/app/modules/appBar/appBar_page.dart';
 import 'package:projeto_chat_suporte/app/modules/chamados/chamados_store.dart';
 import 'package:flutter/material.dart';
-import 'package:projeto_chat_suporte/app/modules/model/service_call.dart';
+import '../model/enums/status_enum.dart';
 
 class ChamadosPage extends StatefulWidget {
   final String title;
@@ -87,7 +87,7 @@ class ChamadosPageState extends State<ChamadosPage> {
                                             ),
                                             CircleAvatar(
                                               backgroundImage: NetworkImage(
-                                                  controller.calls[index].img),
+                                                  controller.calls[index].suport.profilePicture),
                                               radius: 30,
                                             ),
                                             SizedBox(
@@ -111,7 +111,7 @@ class ChamadosPageState extends State<ChamadosPage> {
                                                   children: [
                                                     Text(
                                                       controller
-                                                          .calls[index].motivo,
+                                                          .calls[index].title,
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           fontWeight:
@@ -123,7 +123,7 @@ class ChamadosPageState extends State<ChamadosPage> {
                                                     ),
                                                     Text(
                                                       controller
-                                                          .calls[index].service,
+                                                          .calls[index].job,
                                                       style: TextStyle(
                                                           color: Colors
                                                               .blueGrey[500]),
@@ -132,7 +132,7 @@ class ChamadosPageState extends State<ChamadosPage> {
                                                     ),
                                                     Text(
                                                       controller
-                                                          .calls[index].date,
+                                                          .calls[index].dateOpen,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                     )

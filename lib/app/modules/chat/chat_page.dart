@@ -111,7 +111,7 @@ class ChatPageState extends State<ChatPage> {
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text(
-          widget.chamado.motivo,
+          widget.chamado.title,
           style: TextStyle(
             fontSize: 28.0,
             fontWeight: FontWeight.bold,

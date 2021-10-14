@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_chat_suporte/app/modules/appBar/appBar_module.dart';
 import 'package:projeto_chat_suporte/app/modules/appBar/appBar_page.dart';
+import 'package:projeto_chat_suporte/app/modules/chat/chat_controller.dart';
 import 'package:projeto_chat_suporte/app/modules/chat/chat_module.dart';
 import 'package:projeto_chat_suporte/app/services/sockets/socket_connection.dart';
 import 'package:projeto_chat_suporte/app/util/chat/socket_conection_info.dart';
@@ -19,9 +20,9 @@ class AppModule extends Module {
   final List<Bind> binds = [
    Bind.singleton((i) => AppBarPage()),
    Bind.singleton((i) => AppBarStore()),
-   Bind.singleton((i) => BaseChamados()),
+   //Bind.singleton((i) => BaseChamados()),
    Bind.singleton((i) => SocketConnection()),
-   Bind.singleton((i) => Dio(BaseOptions(baseUrl: SocketConectionInfo.local)))
+   Bind.singleton((i) => Dio(BaseOptions(baseUrl: SocketConectionInfo.http)))
   ];
 
   @override

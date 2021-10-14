@@ -8,13 +8,13 @@ part 'openChats_store.g.dart';
 class OpenChatsStore = _OpenChatsStoreBase with _$OpenChatsStore;
 
 abstract class _OpenChatsStoreBase with Store {
-  var chamados = BaseOpenChat();
+  //var chamados = BaseOpenChat();
 
   @observable
   ObservableList<OpenChatModel> chatList = ObservableList<OpenChatModel>();
 
   @action
   getList() {
-    chatList = chamados.openChats().asObservable();
+    //chatList = chamados.openChats().asObservable();
   }
 }

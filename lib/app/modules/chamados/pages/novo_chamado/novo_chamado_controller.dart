@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:projeto_chat_suporte/app/modules/chamados/repositories/novos_chamados_repository.dart';
 import 'package:projeto_chat_suporte/app/modules/model/service_call.dart';
+import '../../../model/enums/status_enum.dart';
 
 class NovoChamadoController{
 
@@ -12,7 +13,7 @@ class NovoChamadoController{
 
   createNewCall(String servico)  {
 
-    CallModel call = CallModel(idCall: "", status: Status.Open, motivo: motivo.text, descricao: descricao.text, date: "", img: "", service: servico);
+    CallModel call = CallModel(token: "",  imgs: [], idCall: "", status: Status.Open, title: motivo.text, description: descricao.text, dateOpen: "", job: servico);
     repository.sendCall(call);
   }
 
