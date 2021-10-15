@@ -16,7 +16,7 @@ class SuportModel {
     };
   }
 
-    factory SuportModel.fromJson(json) {     
+  factory SuportModel.fromJson(json) {
     return SuportModel(
       name: json['name'],
       idSuport: json['idSuport'],

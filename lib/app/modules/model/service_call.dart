@@ -53,8 +53,7 @@ class CallModel {
       title: json['title'],
       job: json['job'],      
       description: json['description'],
-      // imgs: json['imgs'] as List<String>,
-       imgs: [],
+      imgs: List<String>.from(json['imgs']),
       status: getStatusFromString(json['status']),
       dateOpen: json['date_open'],
     );    
