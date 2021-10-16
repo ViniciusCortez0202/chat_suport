@@ -20,8 +20,7 @@ class NovosChamadosRepository {
          listCalls = list.map((item) => CallModel.fromJson(item)).toList(); 
          listCalls.sort((a, b) => a.status == Status.Open ? -1 : a.status == Status.Activate ? -1 : 1);
       } catch (e) {
-        print(e);
-        throw ("Não foi possível encontrar os chamados");
+        throw ("Não foi possível encontrar os chamados: $e");
       }
       return listCalls;
   }
