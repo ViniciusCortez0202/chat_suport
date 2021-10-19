@@ -7,22 +7,31 @@ class NovosChamadosRepository {
 
   NovosChamadosRepository(this._dio);
 
-    sendCall(CallModel call) async {
-    await _dio.post("/calls/open", data: call.toJson());
+  Future<bool> sendCall(CallModel call) async {
+    var response;
+
+    try {
+      response = await _dio.post("/calls/open", data: call.toJson());
+    } catch (e) {
+      throw ("Erro ao criar chamado: $e");
+    }
+    return response.statusCode == 201;
   }
 
-
-    Future<List<CallModel>> getCalls() async{
-       List<CallModel> listCalls;
-      try {
-         var response = await _dio.get("/calls/all");        
-         final list = response.data as List; 
-         listCalls = list.map((item) => CallModel.fromJson(item)).toList(); 
-         listCalls.sort((a, b) => a.status == Status.Open ? -1 : a.status == Status.Activate ? -1 : 1);
-      } catch (e) {
-        throw ("Não foi possível encontrar os chamados: $e");
-      }
-      return listCalls;
+  Future<List<CallModel>> getCalls() async {
+    List<CallModel> listCalls;
+    try {
+      var response = await _dio.get("/calls/all");
+      final list = response.data as List;
+      listCalls = list.map((item) => CallModel.fromJson(item)).toList();
+      listCalls.sort((a, b) {
+        if (a.status == Status.Open) return -1;
+        if(a.status == Status.Activate && b.status == Status.Close) return -1;
+        return 1;
+      });
+    } catch (e) {
+      throw ("Não foi possível encontrar os chamados: $e");
+    }
+    return listCalls;
   }
-
 }

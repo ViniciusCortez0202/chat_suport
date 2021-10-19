@@ -38,8 +38,9 @@ class ChamadosPageState extends State<ChamadosPage> {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ElevatedButton(
               onPressed: () {
-                Modular.to.pushNamed('/chamados/newCall').whenComplete(
-                  controller.getList);
+                Modular.to
+                    .pushNamed('/chamados/newCall')
+                    .whenComplete(controller.getList);
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -64,8 +65,10 @@ class ChamadosPageState extends State<ChamadosPage> {
                           itemBuilder: (_, index) {
                             return GestureDetector(
                               onTap: () {
-                                Modular.to.pushNamed("/chat",
-                                    arguments: controller.calls[index]).whenComplete(controller.getList);
+                                Modular.to
+                                    .pushNamed("/chat",
+                                        arguments: controller.calls[index])
+                                    .whenComplete(controller.getList);
                               },
                               child: Observer(builder: (_) {
                                 return Container(
@@ -87,7 +90,8 @@ class ChamadosPageState extends State<ChamadosPage> {
                                             ),
                                             CircleAvatar(
                                               backgroundImage: NetworkImage(
-                                                  controller.calls[index].suport.profilePicture),
+                                                  controller.calls[index].suport
+                                                      .profilePicture),
                                               radius: 30,
                                             ),
                                             SizedBox(
@@ -131,8 +135,8 @@ class ChamadosPageState extends State<ChamadosPage> {
                                                           TextOverflow.ellipsis,
                                                     ),
                                                     Text(
-                                                      controller
-                                                          .calls[index].dateOpen,
+                                                      controller.calls[index]
+                                                          .dateOpen,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                     )
