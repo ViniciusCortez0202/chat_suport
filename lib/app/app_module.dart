@@ -32,6 +32,6 @@ class AppModule extends Module {
     ModuleRoute('/openChat', module: OpenChatsModule(), transition: TransitionType.noTransition),
     ModuleRoute('/chamados', module: ChamadosModule(), transition: TransitionType.noTransition),
     ModuleRoute('/servicos', module: ServicosModule(), transition: TransitionType.noTransition),
-    ModuleRoute('/chat', module: ChatModule())
+    ModuleRoute('/chat', module: ChatModule(),  transition: TransitionType.downToUp)
   ];
 }
