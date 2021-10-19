@@ -17,7 +17,7 @@ class ServicesModel {
 
   factory ServicesModel.fromJson(json) {
     return ServicesModel(
-        idService: json['idjob'],
+        idService: json['idJob'],
         serviceName: json['name'],
         description: json['description'],
         cost: json['cost'],
