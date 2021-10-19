@@ -8,7 +8,7 @@ import 'enums/status_enum.dart';
 
 class CallModel {
   String idCall;
-  late ClientModel client;
+  ClientModel client;
   late SuportModel suport;
   List<String> imgs;
   String title;
@@ -28,6 +28,8 @@ class CallModel {
     required this.status,
     required this.dateOpen,
     required this.description,
+    required this.client,
+    this.dateClose = "",
   });
 
   Map toJson() {
@@ -35,7 +37,6 @@ class CallModel {
       'codeEnterprise': EntrerpresiData.id,
       'idCall': idCall,
       'client': client.toJson(),
-      'suport': suport.toJson(),
       'title': title,
       'job': job,
       'description': description,
@@ -47,17 +48,17 @@ class CallModel {
   }
 
   factory CallModel.fromJson(json) {
-     var call =  CallModel(
+    var call = CallModel(
       token: json['token'],
       idCall: json['idCall'],
       title: json['title'],
-      job: json['job'],      
+      job: json['job'],
       description: json['description'],
       imgs: List<String>.from(json['imgs']),
       status: getStatusFromString(json['status']),
       dateOpen: json['date_open'],
-    );    
-    call.client = ClientModel.fromJson(json['client']);
+      client: ClientModel.fromJson(json['client']),
+    );
     call.suport = SuportModel.fromJson(json['suport']);
     call.dateClose = json['date_close'];
     return call;
