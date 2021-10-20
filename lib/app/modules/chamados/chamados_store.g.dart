@@ -24,17 +24,33 @@ mixin _$ChamadosStore on _ChamadosStoreBase, Store {
     });
   }
 
+  final _$asyncCallAtom = Atom(name: '_ChamadosStoreBase.asyncCall');
+
+  @override
+  ObservableFuture<List<CallModel>> get asyncCall {
+    _$asyncCallAtom.reportRead();
+    return super.asyncCall;
+  }
+
+  @override
+  set asyncCall(ObservableFuture<List<CallModel>> value) {
+    _$asyncCallAtom.reportWrite(value, super.asyncCall, () {
+      super.asyncCall = value;
+    });
+  }
+
   final _$getListAsyncAction = AsyncAction('_ChamadosStoreBase.getList');
 
   @override
-  Future getList() {
+  Future<void> getList() {
     return _$getListAsyncAction.run(() => super.getList());
   }
 
   @override
   String toString() {
     return '''
-calls: ${calls}
+calls: ${calls},
+asyncCall: ${asyncCall}
     ''';
   }
 }

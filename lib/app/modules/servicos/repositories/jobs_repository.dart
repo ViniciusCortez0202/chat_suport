@@ -13,9 +13,21 @@ class JobsRespository{
        final data = response.data as List;
        jobs = data.map((item) => ServicesModel.fromJson(item)).toList();
     } catch (e) {
-      throw("Erro ao tentar buscar os servicos $e");
+      throw("Erro ao tentar buscar os servicos: $e");
     }
-
     return jobs;
+  }
+
+  Future<ServicesModel> getDescriptionJob(String idEnterprise, String token, String idJob) async{
+    ServicesModel job;
+
+    try {
+      var response = await _dio.get('/jobs/info/?enterprise=$idEnterprise&token=$token&idJob=$idJob');
+      final data = response.data;
+      job = ServicesModel.fromJson(data);
+    } catch (e) {
+      throw("Erro ao tentar obeter job $idJob: $e");
+    }
+    return job;
   }
 }

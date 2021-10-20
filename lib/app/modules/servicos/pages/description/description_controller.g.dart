@@ -12,36 +12,48 @@ mixin _$DescriptionController on _DescriptionControllerBase, Store {
   final _$serviceAtom = Atom(name: '_DescriptionControllerBase.service');
 
   @override
-  dynamic get service {
+  ServicesModel? get service {
     _$serviceAtom.reportRead();
     return super.service;
   }
 
   @override
-  set service(dynamic value) {
+  set service(ServicesModel? value) {
     _$serviceAtom.reportWrite(value, super.service, () {
       super.service = value;
     });
   }
 
-  final _$_DescriptionControllerBaseActionController =
-      ActionController(name: '_DescriptionControllerBase');
+  final _$serviceFutureAtom =
+      Atom(name: '_DescriptionControllerBase.serviceFuture');
 
   @override
-  dynamic searchDescrption(int idService) {
-    final _$actionInfo = _$_DescriptionControllerBaseActionController
-        .startAction(name: '_DescriptionControllerBase.searchDescrption');
-    try {
-      return super.searchDescrption(idService);
-    } finally {
-      _$_DescriptionControllerBaseActionController.endAction(_$actionInfo);
-    }
+  ObservableFuture<ServicesModel>? get serviceFuture {
+    _$serviceFutureAtom.reportRead();
+    return super.serviceFuture;
+  }
+
+  @override
+  set serviceFuture(ObservableFuture<ServicesModel>? value) {
+    _$serviceFutureAtom.reportWrite(value, super.serviceFuture, () {
+      super.serviceFuture = value;
+    });
+  }
+
+  final _$searchDescrptionAsyncAction =
+      AsyncAction('_DescriptionControllerBase.searchDescrption');
+
+  @override
+  Future searchDescrption(dynamic context, String idJob) {
+    return _$searchDescrptionAsyncAction
+        .run(() => super.searchDescrption(context, idJob));
   }
 
   @override
   String toString() {
     return '''
-service: ${service}
+service: ${service},
+serviceFuture: ${serviceFuture}
     ''';
   }
 }
