@@ -1,32 +1,36 @@
-class Message {
+class MessageModel {
   final bool isMe;
   final String
         time; // Would usually be type DateTime or Firebase Timestamp in production apps
   final String text;
   final bool unread;
+  final String idCall;
 
-  Message({
+  MessageModel({
     required this.isMe,
     required this.time,
     required this.text,
     required this.unread,
+    required this.idCall
   });
 
-  factory Message.fromJson(Map json){
-    return Message(
-      isMe: json['isMe'],
+  factory MessageModel.fromJson(Map json){
+    return MessageModel(
+      isMe: json['isMe'] == "123",
       time: json['time'],
-      text: json['text'],
-      unread: json['unread']
+      text: json['message'],
+      idCall: json['idCall'],
+      unread: false
     );
   }
 
   Map toJson(){
     return {
-      'isMe': isMe,
+      'type': 1,
+      'idUser': "123",
       'time': time,
-      'text': text,
-      'unread': unread
+      'message': text,
+      'idCall': idCall
     };
   }
 

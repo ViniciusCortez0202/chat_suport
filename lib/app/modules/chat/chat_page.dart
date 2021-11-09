@@ -15,9 +15,15 @@ class ChatPage extends StatefulWidget {
 
 class ChatPageState extends State<ChatPage> {
   final ChatController controller = Modular.get<ChatController>();
-  
 
-  _buildMessage(Message message, bool isMe) {
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    controller.store.getAllMessages("001");
+  }
+
+  _buildMessage(MessageModel message, bool isMe) {
     final Container msg = Container(
       margin: isMe
           ? EdgeInsets.only(
@@ -70,7 +76,6 @@ class ChatPageState extends State<ChatPage> {
   }
 
   _buildMessageComposer() {
-  
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       height: 70.0,
@@ -107,11 +112,12 @@ class ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    controller.call = widget.chamado;
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text(
-          widget.chamado.title,
+          controller.call.title,
           style: TextStyle(
             fontSize: 28.0,
             fontWeight: FontWeight.bold,
@@ -152,7 +158,7 @@ class ChatPageState extends State<ChatPage> {
                         padding: EdgeInsets.only(top: 15.0),
                         itemCount: controller.store.messages.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final Message message =
+                          final MessageModel message =
                               controller.store.messages[index];
                           final bool isMe =
                               controller.store.messages[index].isMe;
