@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:projeto_chat_suporte/app/modules/model/enums/status_enum.dart';
 import 'package:projeto_chat_suporte/app/modules/model/service_call.dart';
 
+import '../../../app_widget.dart';
+
 class NovosChamadosRepository {
   late Dio _dio;
 
@@ -10,8 +12,11 @@ class NovosChamadosRepository {
   Future<bool> sendCall(CallModel call) async {
     var response;
 
+    Map<String, String> headers = {"socketId": AppWidget.socketid};
+    Options options = Options(headers: headers);
+
     try {
-      response = await _dio.post("/calls/open", data: call.toJson());
+      response = await _dio.post("/calls/open", data: call.toJson(), options: options);
     } catch (e) {
       throw ("Erro ao criar chamado: $e");
     }

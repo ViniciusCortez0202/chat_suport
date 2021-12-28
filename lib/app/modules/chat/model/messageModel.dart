@@ -16,7 +16,7 @@ class MessageModel {
 
   factory MessageModel.fromJson(Map json){
     return MessageModel(
-      isMe: json['isMe'] == "123",
+      isMe: json['idUser'] == "123",
       time: json['time'],
       text: json['message'],
       idCall: json['idCall'],

@@ -13,6 +13,7 @@ abstract class _ReceivedMessagesStoreBase with Store {
   @action
   void putMessages(MessageModel message) {
     messages.add(message);
+    
   }
 
   Iterable<MessageModel> getMessagesOfCall(String idCall){

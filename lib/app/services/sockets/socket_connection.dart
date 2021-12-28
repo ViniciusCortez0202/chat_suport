@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projeto_chat_suporte/app/app_widget.dart';
 import 'package:projeto_chat_suporte/app/modules/chat/chat_controller.dart';
 import 'package:projeto_chat_suporte/app/modules/chat/model/messageModel.dart';
 import 'package:projeto_chat_suporte/app/shared/messages_chat/received_messages_store.dart';
@@ -24,7 +25,10 @@ class SocketConnection {
   String createSocket() {
     if (_socket.connected) return _socket.id.toString();
     _socket.connect();
-    _socket.onConnect((_) => {print("WebSocket Conectado")});
+    _socket.onConnect((_) => {
+      AppWidget.socketid = _socket.id!,
+      print("WebSocket Conectado " + _socket.id!)
+    });
     _socket.on(
         "message",
         (data) => {
@@ -35,6 +39,6 @@ class SocketConnection {
   }
 
   senderMessage(MessageModel message) {
-    _socket.emit("sender", message.toJson());
+    _socket.emit("message", message.toJson());
   }
 }

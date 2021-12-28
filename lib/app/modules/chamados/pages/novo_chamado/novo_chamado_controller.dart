@@ -30,7 +30,7 @@ class NovoChamadoController {
       status: Status.Open,
       title: motivo.text,
       description: descricao.text,
-      dateOpen: "",
+      dateOpen: "",      
       job: servico,
     );
     
